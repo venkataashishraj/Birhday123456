@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Ammu</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: url("b.jpg") no-repeat center center/cover;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive;
+      color: white;
+    }
+
+    h1 {
+      margin-top: 35%;
+      font-size: 40px;
+      display: inline-block;
+      animation: floatText 3s ease-in-out infinite;
+      text-shadow: 0 0 10px #ff4da6, 0 0 20px #ff4da6;
+    }
+
+    @keyframes floatText {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(45deg, #ff0066, #ff3399);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 50px;
+      height: 70px;
+      border-radius: 50%;
+      animation: floatUp 8s infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Happy Birthday Ammu 🎂</h1>
+
+  <div class="controls">
+    <button onclick="playSong()">▶ Play</button>
+    <button onclick="pauseSong()">⏸ Pause</button>
+  </div>
+
+  <audio id="bdaySong">
+    <source src="zebra.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const song = document.getElementById("bdaySong");
+
+    function playSong() { song.play(); }
+    function pauseSong() { song.pause(); }
+
+    // 🎈 Floating balloons
+    function createBalloon() {
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * window.innerWidth + "px";
+      balloon.style.backgroundColor = ["red","pink","purple","orange","yellow"][Math.floor(Math.random()*5)];
+      balloon.style.animationDuration = (5 + Math.random()*5) + "s";
+      document.body.appendChild(balloon);
+      setTimeout(()=>{ balloon.remove(); }, 8000);
+    }
+
+    setInterval(createBalloon, 500);
+  </script>
+</body>
+</html>
